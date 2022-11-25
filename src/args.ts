@@ -19,6 +19,6 @@ export const argv = yargs(hideBin(process.argv))
   .describe("v", "Manually specify log level from 0-4 (-vvv for level 3, etc.)")
   .help()
   .hide("version")
-  .usage("$0 [-r|-w] -f filename")
+  .usage("$0 [-r|-w] [-vvvv] -f filename")
   .string("f")
   .parseSync();
