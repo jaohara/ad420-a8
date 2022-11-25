@@ -37,3 +37,8 @@ export const callAndRecordAverageTimePerResultItem = (operation: Function, name:
   addTimeRecord(name, result.length > 0 ? runtime / result.length : runtime);
   return result;
 };
+
+export const getFirstTimeRecordByNameIfExists = (name: string) => {
+  const recordMatches = times.filter((record) => record.name.toLowerCase() === name.toLowerCase());
+  return recordMatches !== null && recordMatches.length > 0 ? recordMatches[0] : null;
+};
