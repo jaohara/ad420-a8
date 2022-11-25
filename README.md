@@ -14,6 +14,6 @@ npm run build
 Or:
 
 ```console
-npm i nstall
+npm install
 npm run start -- [-r|-w] [-vvvv] -f filename
 ```
