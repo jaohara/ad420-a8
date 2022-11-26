@@ -4,10 +4,16 @@ import { argv } from './args.js';
 import { readInput } from './input.js';
 import { log } from './logger.js';
 import { printErrorAndExit, printStatus, printValue } from './output.js';
-import { addTimeRecord, callAndRecordAverageTimePerResultItem, times } from './timer.js';
+import { 
+  addTimeRecord, 
+  callAndRecordAverageTimePerResultItem, 
+  convertTimeToMillisecondsString,
+  times 
+} from './timer.js';
 
 const filemode = argv.w ? "w" : "r";
 const filename = argv.f;
+const statmode = argv.s;
 const matchPattern = /[I|i]mperdiet/g;
 const matchString = "imperdiet";
 
@@ -75,4 +81,18 @@ printValue(`'${matchString}' Occurrences`, wordCount);
 addTimeRecord("totalExecution", process.uptime());
 log.i("Execution completed");
 log.i("Execution Time Report: ");
-times.forEach(record => log.i(`${record.name} - ${record.duration}s, completed at ${record.logTime}s`));
+
+if (statmode) {
+  log.t("stats enabled, printing runtime stats to stdout");
+  printStatus("\nPrinting runtime stats");
+}
+
+times.forEach(record => {
+  const duration = convertTimeToMillisecondsString(record.duration);
+  const logTime = convertTimeToMillisecondsString(record.logTime);
+
+  if (statmode) {
+    printValue(record.name, `${duration}`);
+  }
+  log.i(`${record.name} - ${duration}, completed at ${logTime}`);
+});

@@ -10,12 +10,31 @@ Uses TypeScript, yargs for argument parsing, log4js for logging, and chalk for s
 ```console
 npm install
 npm run build
-./a8 [-r|-w] [-vvvv] -f filename
+./a8 [-r|-w] [-vvvv] [-s] -f filename
 ```
 
 Or:
 
 ```console
 npm install
-npm run start -- [-r|-w] [-vvvv] -f filename
+npm run start -- [-r|-w] [-vvvv] [-s] -f filename
+```
+
+## Examples
+Count occurences of "imperdiet" in the file "lipsum.txt" with the least verbose log level:
+
+```console
+./a8 -r -f ./lipsum.txt
+```
+
+Write to a file "myfile.txt" with trace-level logging and output of time stats:
+
+```console
+./a8 -w -vvvv -s -f ./myfile.txt
+```
+
+Show all available commandline parameters with usage explanations:
+
+```console
+./a8 -h
 ```

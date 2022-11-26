@@ -1,3 +1,5 @@
+const millisecondPrecision = 5;
+
 // an interface for a logged runtime duration
 interface TimeRecord {
   duration: number;
@@ -7,6 +9,9 @@ interface TimeRecord {
 
 // The array of recorded runtimes
 export const times: TimeRecord[] = [];
+
+export const convertTimeToMillisecondsString = (time: number) => 
+  `${(time * 1000).toFixed(millisecondPrecision)}ms` 
 
 // Adds a named duration directly to the array of TimeRecords
 export const addTimeRecord = (name: string, duration: number) => 
